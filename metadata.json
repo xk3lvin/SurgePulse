@@ -1,0 +1,6 @@
+{
+  "name": "SurgePulse PHV - Driver Demand & Weather Surge MCP",
+  "description": "Real-time price-surge intelligence, crowd hotspot detection, and bad weather opportunity optimizer for PHV & Taxi drivers with built-in MCP server for Vercel deployment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
