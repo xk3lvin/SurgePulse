@@ -441,6 +441,7 @@ export default function App() {
                 driver={driver}
                 onStartNavigation={handleStartNavigation}
                 incidents={incidents}
+                theme={theme}
               />
             </div>
 
