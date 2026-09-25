@@ -36,17 +36,17 @@ export const WeatherRadarPanel: React.FC<WeatherRadarPanelProps> = ({
     <div className="space-y-6">
       
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-sky-950/60 via-slate-900 to-slate-900 border border-sky-900/40 rounded-2xl p-4 sm:p-6 shadow-xl">
+      <div className="bg-gradient-to-r from-sky-100 via-sky-50 to-white dark:from-sky-950/60 dark:via-slate-900 dark:to-slate-900 border border-sky-200 dark:border-sky-900/40 rounded-2xl p-4 sm:p-6 shadow-xl">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-sky-400 font-mono uppercase tracking-wider mb-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-sky-700 dark:text-sky-400 font-mono uppercase tracking-wider mb-1">
               <CloudRain className="w-4 h-4" />
               Doppler Rain Radar • Bad Weather Multiplier
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Precipitation & Rain-Surge Correlation
             </h2>
-            <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 max-w-2xl">
               Tropical rainstorms trigger immediate +40% to +85% surges on PHV/taxi platforms as commuters avoid walking and outdoor bus stops. Position 10 minutes ahead of approaching rain bands.
             </p>
           </div>
@@ -69,25 +69,25 @@ export const WeatherRadarPanel: React.FC<WeatherRadarPanelProps> = ({
           return (
             <div
               key={zone.id}
-              className={`bg-slate-900/90 rounded-2xl border p-4 shadow-lg transition-all ${
+              className={`bg-white dark:bg-slate-900/90 rounded-2xl border p-4 shadow-lg transition-all ${
                 isHeavy
-                  ? 'border-sky-500/40 bg-gradient-to-br from-sky-500/10 via-slate-900 to-slate-900'
-                  : 'border-slate-800'
+                  ? 'border-sky-400 dark:border-sky-500/40 bg-gradient-to-br from-sky-50 dark:from-sky-500/10 via-white dark:via-slate-900 to-white dark:to-slate-900'
+                  : 'border-slate-200 dark:border-slate-800'
               }`}
             >
               <div className="flex items-start justify-between gap-2 mb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className={`p-2 rounded-xl ${isHeavy ? 'bg-sky-500/20 text-sky-400 animate-pulse' : 'bg-slate-800 text-slate-300'}`}>
+                  <div className={`p-2 rounded-xl ${isHeavy ? 'bg-sky-500/20 text-sky-600 dark:text-sky-400 animate-pulse' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>
                     {isHeavy ? <CloudLightning className="w-5 h-5" /> : <CloudRain className="w-5 h-5" />}
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-white">{zone.name}</h3>
-                    <div className="text-xs text-sky-400 font-medium">{zone.status}</div>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{zone.name}</h3>
+                    <div className="text-xs text-sky-600 dark:text-sky-400 font-medium">{zone.status}</div>
                   </div>
                 </div>
 
                 <div className="text-right">
-                  <div className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                  <div className="text-xs font-mono font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
                     +{Math.round((zone.surgeMultiplierImpact - 1.0) * 100)}% Surge
                   </div>
                 </div>
@@ -96,10 +96,10 @@ export const WeatherRadarPanel: React.FC<WeatherRadarPanelProps> = ({
               {/* Rain gauge bar */}
               <div className="space-y-1 mb-3">
                 <div className="flex justify-between text-xs font-mono">
-                  <span className="text-slate-400">Precipitation Rate:</span>
-                  <span className="text-white font-bold">{zone.rainfallRateMmPerHour} mm/hr</span>
+                  <span className="text-slate-500 dark:text-slate-400">Precipitation Rate:</span>
+                  <span className="text-slate-900 dark:text-white font-bold">{zone.rainfallRateMmPerHour} mm/hr</span>
                 </div>
-                <div className="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+                <div className="w-full bg-slate-100 dark:bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-200 dark:border-slate-800">
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
                       zone.rainfallRateMmPerHour > 30
@@ -111,8 +111,8 @@ export const WeatherRadarPanel: React.FC<WeatherRadarPanelProps> = ({
                 </div>
               </div>
 
-              <div className="text-xs text-slate-300 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                <span className="text-slate-400 font-medium">Radar Forecast: </span>
+              <div className="text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-950/60 p-2.5 rounded-xl border border-slate-200 dark:border-slate-800/80">
+                <span className="text-slate-500 dark:text-slate-400 font-medium">Radar Forecast: </span>
                 {zone.forecastNextHour}
               </div>
             </div>
@@ -121,43 +121,43 @@ export const WeatherRadarPanel: React.FC<WeatherRadarPanelProps> = ({
       </div>
 
       {/* Correlation Insight Box */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl">
-        <h3 className="text-base font-bold text-white mb-3 flex items-center gap-2">
-          <Droplets className="w-4 h-4 text-sky-400" />
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-xl">
+        <h3 className="text-base font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+          <Droplets className="w-4 h-4 text-sky-500" />
           Rainfall-to-Surge Economics Matrix
         </h3>
         
         <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-center">
-          <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-            <div className="text-xs font-mono text-slate-400">0 - 5 mm (Clear/Cloudy)</div>
-            <div className="text-lg font-bold text-slate-300 font-mono mt-1">1.0x - 1.2x</div>
+          <div className="bg-slate-50 dark:bg-slate-950/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="text-xs font-mono text-slate-500 dark:text-slate-400">0 - 5 mm (Clear/Cloudy)</div>
+            <div className="text-lg font-bold text-slate-700 dark:text-slate-300 font-mono mt-1">1.0x - 1.2x</div>
             <div className="text-[11px] text-slate-500 mt-0.5">Normal baseline demand</div>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-            <div className="text-xs font-mono text-slate-400">6 - 15 mm (Light Drizzle)</div>
-            <div className="text-lg font-bold text-amber-400 font-mono mt-1">1.3x - 1.6x</div>
+          <div className="bg-slate-50 dark:bg-slate-950/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="text-xs font-mono text-slate-500 dark:text-slate-400">6 - 15 mm (Light Drizzle)</div>
+            <div className="text-lg font-bold text-amber-600 dark:text-amber-400 font-mono mt-1">1.3x - 1.6x</div>
             <div className="text-[11px] text-slate-500 mt-0.5">+25% booking frequency</div>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-xl border border-slate-800">
-            <div className="text-xs font-mono text-slate-400">16 - 30 mm (Steady Rain)</div>
-            <div className="text-lg font-bold text-orange-400 font-mono mt-1">1.8x - 2.2x</div>
+          <div className="bg-slate-50 dark:bg-slate-950/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="text-xs font-mono text-slate-500 dark:text-slate-400">16 - 30 mm (Steady Rain)</div>
+            <div className="text-lg font-bold text-orange-600 dark:text-orange-400 font-mono mt-1">1.8x - 2.2x</div>
             <div className="text-[11px] text-slate-500 mt-0.5">Severe sheltered queueing</div>
           </div>
 
-          <div className="bg-slate-950/70 p-3 rounded-xl border border-sky-500/30 bg-sky-500/5">
-            <div className="text-xs font-mono text-sky-400">30+ mm (Torrential Storm)</div>
-            <div className="text-lg font-bold text-red-400 font-mono mt-1">2.4x - 2.9x</div>
-            <div className="text-[11px] text-sky-300 mt-0.5">Peak island-wide price surge</div>
+          <div className="bg-sky-50 dark:bg-slate-950/70 p-3 rounded-xl border border-sky-300 dark:border-sky-500/30">
+            <div className="text-xs font-mono text-sky-700 dark:text-sky-400">30+ mm (Torrential Storm)</div>
+            <div className="text-lg font-bold text-red-600 dark:text-red-400 font-mono mt-1">2.4x - 2.9x</div>
+            <div className="text-[11px] text-sky-700 dark:text-sky-300 mt-0.5">Peak island-wide price surge</div>
           </div>
         </div>
       </div>
 
       {/* Active Rain-Impacted Hotspots */}
       <div className="space-y-3">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
-          <Zap className="w-4 h-4 text-amber-400" />
+        <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <Zap className="w-4 h-4 text-amber-500" />
           Active Zones Experiencing Storm Surges Right Now ({rainSurgeHotspots.length})
         </h3>
 
@@ -166,21 +166,21 @@ export const WeatherRadarPanel: React.FC<WeatherRadarPanelProps> = ({
             <div
               key={h.id}
               onClick={() => onSelectHotspot(h)}
-              className="bg-slate-900 border border-slate-800 hover:border-amber-500/50 rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between"
+              className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-amber-400 dark:hover:border-amber-500/50 rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between shadow-sm"
             >
               <div>
-                <h4 className="text-sm font-bold text-white">{h.name}</h4>
-                <div className="text-xs text-sky-400 flex items-center gap-1 mt-0.5">
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white">{h.name}</h4>
+                <div className="text-xs text-sky-600 dark:text-sky-400 flex items-center gap-1 mt-0.5">
                   <CloudRain className="w-3 h-3" />
                   {h.rainfallMm} mm/h • {h.passengerCount} commuters waiting
                 </div>
               </div>
 
               <div className="text-right">
-                <span className="text-base font-black text-amber-400 font-mono">
+                <span className="text-base font-black text-amber-600 dark:text-amber-400 font-mono">
                   {h.surgeMultiplier}x
                 </span>
-                <div className="text-[10px] text-slate-400 font-mono">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                   ${h.estimatedFare}
                 </div>
               </div>

@@ -40,17 +40,17 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
     <div className="space-y-6">
       
       {/* Top Banner / Configuration Header */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-900/95 to-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-5 border-b border-slate-800">
+      <div className="bg-white dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-900/95 dark:to-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800">
           <div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 font-mono uppercase tracking-wider mb-1">
+            <div className="flex items-center gap-2 text-xs font-semibold text-amber-600 dark:text-amber-400 font-mono uppercase tracking-wider mb-1">
               <Award className="w-4 h-4" />
               Surge Algorithm • Travel Duration vs Fare ROI
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
               Business Opportunity & Travel Duration Engine
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-2xl">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl">
               Highlights areas with top net profit potential based on real-time weather conditions, transit incidents, deadhead travel duration, and surge decay risk.
             </p>
           </div>
@@ -58,13 +58,13 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
           {/* Quick Stats Pill */}
           {topOpportunity && (
             <div className="flex items-center gap-3 bg-amber-500/10 border border-amber-500/30 rounded-xl px-4 py-3">
-              <Flame className="w-6 h-6 text-amber-400 animate-bounce" />
+              <Flame className="w-6 h-6 text-amber-500 animate-bounce" />
               <div>
-                <div className="text-[10px] text-slate-400 uppercase font-mono">Island #1 Top Pick</div>
-                <div className="text-sm font-bold text-amber-400">
+                <div className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-mono">Island #1 Top Pick</div>
+                <div className="text-sm font-bold text-amber-600 dark:text-amber-400">
                   {topOpportunity.hotspot.name}
                 </div>
-                <div className="text-xs text-slate-300 font-mono">
+                <div className="text-xs text-slate-700 dark:text-slate-300 font-mono">
                   {topOpportunity.hotspot.surgeMultiplier}x Surge • ~${topOpportunity.effectiveHourlyRate}/hr rate
                 </div>
               </div>
@@ -77,17 +77,17 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
           
           {/* Driver Origin Selector */}
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center justify-between">
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center justify-between">
               <span className="flex items-center gap-1.5">
-                <Navigation className="w-3.5 h-3.5 text-sky-400" />
+                <Navigation className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400" />
                 Current Driver Position:
               </span>
-              <span className="text-[11px] text-slate-400 font-mono">Simulate location change</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Simulate location change</span>
             </label>
             <select
               value={driver.currentZoneId}
               onChange={(e) => onChangeDriverZone(e.target.value)}
-              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium"
+              className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 font-medium"
             >
               {hotspots.map((h) => (
                 <option key={h.id} value={h.id}>
@@ -99,11 +99,11 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
           {/* Vehicle Category Selector */}
           <div>
-            <label className="block text-xs font-medium text-slate-300 mb-1.5 flex items-center justify-between">
+            <label className="block text-xs font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center justify-between">
               <span>Vehicle Fleet Classification:</span>
-              <span className="text-[11px] text-slate-400 font-mono">Fare tier adjustment</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">Fare tier adjustment</span>
             </label>
-            <div className="grid grid-cols-4 gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-medium">
+            <div className="grid grid-cols-4 gap-1.5 bg-slate-100 dark:bg-slate-950 p-1 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-medium">
               {[
                 { id: 'standard_4', label: '4-Seater' },
                 { id: 'xl_6', label: '6-Seater XL' },
@@ -113,10 +113,10 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
                 <button
                   key={veh.id}
                   onClick={() => onChangeVehicleType(veh.id as VehicleType)}
-                  className={`py-1.5 px-2 rounded-lg text-center transition-all ${
+                  className={`py-1.5 px-2 rounded-lg text-center transition-all cursor-pointer ${
                     driver.vehicleType === veh.id
                       ? 'bg-amber-500 text-slate-950 font-bold shadow'
-                      : 'text-slate-400 hover:text-white'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
                   {veh.label}
@@ -130,9 +130,9 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
       {/* Ranked Opportunity Cards */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between text-xs text-slate-400 font-medium px-1">
+        <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium px-1">
           <span>Ranked by ROI Score (Surge Rate + Demand - Travel Deadhead Cost)</span>
-          <span className="font-mono text-amber-400">{roiList.length} destinations evaluated</span>
+          <span className="font-mono text-amber-600 dark:text-amber-400">{roiList.length} destinations evaluated</span>
         </div>
 
         {roiList.map((item, index) => {
@@ -142,10 +142,10 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
           return (
             <div
               key={item.hotspot.id}
-              className={`relative bg-slate-900/90 rounded-2xl border transition-all p-4 sm:p-5 shadow-lg hover:border-slate-700 ${
+              className={`relative bg-white dark:bg-slate-900/90 rounded-2xl border transition-all p-4 sm:p-5 shadow-lg hover:border-slate-300 dark:hover:border-slate-700 ${
                 isTop
-                  ? 'border-amber-500/50 bg-gradient-to-r from-amber-500/5 via-slate-900 to-slate-900'
-                  : 'border-slate-800'
+                  ? 'border-amber-500/50 bg-gradient-to-r from-amber-500/5 via-white dark:via-slate-900 to-white dark:to-slate-900'
+                  : 'border-slate-200 dark:border-slate-800'
               }`}
             >
               {/* Ribbon tag for top pick */}
@@ -160,18 +160,18 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
                 {/* Left Section: Info & Catalysts */}
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className="font-mono font-bold text-xs text-slate-400">
+                    <span className="font-mono font-bold text-xs text-slate-400 dark:text-slate-500">
                       #{index + 1}
                     </span>
-                    <h3 className="text-base sm:text-lg font-bold text-white hover:text-amber-400 cursor-pointer transition-colors"
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white hover:text-amber-500 cursor-pointer transition-colors"
                         onClick={() => onSelectHotspot(item.hotspot)}>
                       {item.hotspot.name}
                     </h3>
-                    <span className="text-xs px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">
+                    <span className="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono">
                       {item.hotspot.district}
                     </span>
                     {item.hotspot.weatherCondition === 'heavy_rain' || item.hotspot.weatherCondition === 'thunderstorm' ? (
-                      <span className="text-xs px-2 py-0.5 rounded bg-sky-500/20 text-sky-400 border border-sky-500/30 flex items-center gap-1 font-medium">
+                      <span className="text-xs px-2 py-0.5 rounded bg-sky-500/20 text-sky-700 dark:text-sky-400 border border-sky-500/30 flex items-center gap-1 font-medium">
                         <CloudRain className="w-3 h-3" />
                         Rain Surge ({item.hotspot.rainfallMm}mm)
                       </span>
@@ -179,38 +179,38 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
                   </div>
 
                   {/* Operational Rationale */}
-                  <p className="text-xs sm:text-sm text-slate-300 mb-2">
+                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-2">
                     {item.rationale}
                   </p>
 
                   {/* Platforms breakdown pills */}
                   <div className="flex flex-wrap items-center gap-2 text-[11px] font-mono">
-                    <span className="text-slate-400">Live Rates:</span>
-                    <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span className="text-slate-500 dark:text-slate-400">Live Rates:</span>
+                    <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
                       Grab {item.hotspot.platformSurges.grab}x
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20">
+                    <span className="px-1.5 py-0.5 rounded bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20">
                       Gojek {item.hotspot.platformSurges.gojek}x
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    <span className="px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20">
                       Comfort CDG {item.hotspot.platformSurges.comfort}x
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">
+                    <span className="px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-700 dark:text-yellow-400 border border-yellow-500/20">
                       Tada {item.hotspot.platformSurges.tada}x
                     </span>
                   </div>
                 </div>
 
                 {/* Middle Section: Financial & Travel Duration Breakdown */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-slate-950/70 p-3 rounded-xl border border-slate-800/80 text-center">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-slate-50 dark:bg-slate-950/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800/80 text-center">
                   
                   {/* Travel Duration */}
                   <div>
-                    <div className="text-[10px] text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
-                      <Clock className="w-3 h-3 text-sky-400" />
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
+                      <Clock className="w-3 h-3 text-sky-600 dark:text-sky-400" />
                       Travel
                     </div>
-                    <div className="text-sm font-bold text-white font-mono mt-0.5">
+                    <div className="text-sm font-bold text-slate-900 dark:text-white font-mono mt-0.5">
                       {item.travelDurationMins} min
                     </div>
                     <div className="text-[10px] text-slate-500 font-mono">
@@ -220,25 +220,25 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
                   {/* Surge Multiplier */}
                   <div>
-                    <div className="text-[10px] text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
-                      <TrendingUp className="w-3 h-3 text-amber-400" />
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
+                      <TrendingUp className="w-3 h-3 text-amber-500" />
                       Surge
                     </div>
-                    <div className="text-sm font-black text-amber-400 font-mono mt-0.5">
+                    <div className="text-sm font-black text-amber-600 dark:text-amber-400 font-mono mt-0.5">
                       {item.hotspot.surgeMultiplier}x
                     </div>
-                    <div className="text-[10px] text-slate-400 font-mono">
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                       ~{item.hotspot.surgeDecayMinutes}m left
                     </div>
                   </div>
 
                   {/* Net Profit per Trip */}
                   <div>
-                    <div className="text-[10px] text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
-                      <DollarSign className="w-3 h-3 text-emerald-400" />
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
+                      <DollarSign className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
                       Net Take
                     </div>
-                    <div className="text-sm font-bold text-emerald-400 font-mono mt-0.5">
+                    <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono mt-0.5">
                       ${item.expectedNetProfit}
                     </div>
                     <div className="text-[10px] text-slate-500 font-mono">
@@ -248,14 +248,14 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
                   {/* Effective Pace ($/hr) */}
                   <div>
-                    <div className="text-[10px] text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
-                      <Award className="w-3 h-3 text-purple-400" />
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-mono flex items-center justify-center gap-1">
+                      <Award className="w-3 h-3 text-purple-600 dark:text-purple-400" />
                       ROI Score
                     </div>
-                    <div className="text-sm font-black text-purple-300 font-mono mt-0.5">
+                    <div className="text-sm font-black text-purple-700 dark:text-purple-300 font-mono mt-0.5">
                       {item.roiScore}/100
                     </div>
-                    <div className="text-[10px] font-bold text-emerald-400 font-mono">
+                    <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                       ${item.effectiveHourlyRate}/hr
                     </div>
                   </div>
@@ -278,7 +278,7 @@ export const RoiCalculator: React.FC<RoiCalculatorProps> = ({
 
                   <button
                     onClick={() => onSelectHotspot(item.hotspot)}
-                    className="w-full py-1.5 px-3 rounded-xl text-xs font-medium text-slate-400 hover:text-white bg-slate-800/60 hover:bg-slate-800 transition-all text-center"
+                    className="w-full py-1.5 px-3 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800/60 dark:hover:bg-slate-800 transition-all text-center cursor-pointer"
                   >
                     Inspect Map
                   </button>
